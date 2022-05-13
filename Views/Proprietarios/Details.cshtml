@@ -1,0 +1,104 @@
+@model PetShopApp.Models.Proprietario
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Proprietario</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Endereco)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Endereco)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DtNascimento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DtNascimento)
+        </dd>
+    </dl>
+</div>
+<div>
+    <h3>Animais deste proprietário</h3>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                <label>Nome</label>
+            </th>
+            <th>
+                 <label>Data de Nascimento</label>
+            </th>
+            <th>
+                <label>Raça</label>
+            </th>
+            <th> 
+                <label>Idade</label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var animal in Model.Animais) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => animal.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(model => animal.DtNascimento)
+            </td>
+            <td>
+                @Html.DisplayFor(model => animal.Raca)
+            </td>
+            <td>
+                @Html.DisplayFor(model => animal.Idade)               
+            </td>
+            
+            <td>
+                <a asp-controller="Animals" asp-action="Edit" asp-route-id="@animal.Id">Edit</a> |
+                <a asp-controller="Animals" asp-action="Details" asp-route-id="@animal.Id">Details</a> |
+                <a asp-controller="Animals" asp-action="Delete" asp-route-id="@animal.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <p><a asp-controller="Animals" asp-action="Create">Novo Animal</a></p>
+</div>
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
